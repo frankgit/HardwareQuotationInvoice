@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StructureMap;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,13 @@ namespace HardwareQuotationInvoice
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //注册StructureMap
+            var container = new Container();
+            StructureMapBootrstrapper.Bootstrap(container);
+
+            //通过StructureMap返回Controller实例，通过构造器注入
+            ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory(container));
         }
     }
 }

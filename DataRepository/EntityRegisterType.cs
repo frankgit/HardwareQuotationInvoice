@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataRepository
 {
-    public class Class1
+    public enum EntityRegisterType
     {
+        Insert,
+        Update,
+        Delete
+
     }
 }
