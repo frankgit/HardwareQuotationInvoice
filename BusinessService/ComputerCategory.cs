@@ -14,7 +14,7 @@ namespace BusinessService
         public string Name { get; set; }
 
         [PrimaryKey]
-        public int OrderId { get; set; }
+        public int OrderPriorityId { get; set; }
 
 
     }
