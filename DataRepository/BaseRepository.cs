@@ -9,9 +9,10 @@ namespace DataRepository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : AggregateRoot
     {
-        private IUnitWork<TEntity> UnitWorker;
-        public BaseRepository(IUnitWork<TEntity> DbUnitWorker) 
+        private IUnitWork<TEntity> _unitWorker;
+        public BaseRepository(IUnitWork<TEntity> unitWorker) 
         {
+            _unitWorker = unitWorker;
         }
 
         public IQueryable<TEntity> Entitles
@@ -24,23 +25,23 @@ namespace DataRepository
 
         public void Delete(TEntity entity)
         {
-            UnitWorker.RegisterNew(entity);
-            UnitWorker.Commit();
+            _unitWorker.RegisterNew(entity);
+            _unitWorker.Commit();
         }
 
         public void Delete(IEnumerable<TEntity> Entities)
         {
             foreach (var entity in Entities)
             {
-                UnitWorker.RegisterDelete(entity);
+                _unitWorker.RegisterDelete(entity);
             }
-            UnitWorker.Commit();           
+            _unitWorker.Commit();           
         }
 
         public void Delete(object Id)
         {
-            UnitWorker.RegisterDelete(Id);
-            UnitWorker.Commit();
+            _unitWorker.RegisterDelete(Id);
+            _unitWorker.Commit();
         }
 
         public TEntity GetByKey(object key)
@@ -50,17 +51,23 @@ namespace DataRepository
 
         public void Insert(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            foreach (var entity in entities)
+            {
+                _unitWorker.RegisterNew(entity);
+            }
+            _unitWorker.Commit();
         }
 
         public void Insert(TEntity entity)
         {
-            throw new NotImplementedException();
+            _unitWorker.RegisterNew(entity);
+            _unitWorker.Commit();
         }
 
         public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            _unitWorker.RegisterUpdate(entity);
+            _unitWorker.Commit();
         }
     }
 }

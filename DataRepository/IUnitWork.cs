@@ -10,7 +10,7 @@ namespace DataRepository
 {
     public interface IUnitWork<TEntity> where TEntity:AggregateRoot
     {
-        List<AggregateRoot> EntityCollection { get; set; }
+        List<TEntity> EntityCollection { get; set; }
 
         string Connection { get; }
 

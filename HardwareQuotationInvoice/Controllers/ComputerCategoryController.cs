@@ -17,7 +17,7 @@ namespace HardwareQuotationInvoice.Controllers
         // GET: ComputerCategory
         public ActionResult Index()
         {
-            _hardwareService.AddNewComputerType(new ComputerCategory { Name = "台式机", Order = 0 });
+            _hardwareService.AddNewComputerType(new ComputerCategory { Name = "台式机", OrderId = 0 });
             return View();
         }
 

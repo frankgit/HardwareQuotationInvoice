@@ -5,11 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessService;
 using SQLite;
+using System.Configuration;
 
 namespace DataRepository
 {
     public class UnitWork<TEntity>:IUnitWork<TEntity> where TEntity: AggregateRoot
     {
+        public UnitWork()
+        {
+            _unitCollection = new List<TEntity>();
+        }
 
         private  EntityRegisterType _registerType;
 
@@ -86,25 +91,25 @@ namespace DataRepository
         {
             var entityRoot = new AggregateRoot();
             entityRoot.Id = int.Parse(Id.ToString());
-            _unitCollection.Add(entityRoot);
+            _unitCollection.Add(entityRoot as TEntity);
             IsCommitted = false;
             _registerType = EntityRegisterType.Delete;
         }
 
 
         #region Implement IUnitWork
-        private List<AggregateRoot> _unitCollection;
+        private List<TEntity> _unitCollection;
         private bool _isCommited;
 
         public string Connection
         {
             get
             {
-                throw new NotImplementedException();
+                return ConfigurationManager.AppSettings["DataFilePath"];
             }
         }
 
-        public List<AggregateRoot> EntityCollection
+        public List<TEntity> EntityCollection
         {
             get
             {
