@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace BusinessService
 {
-    public class ComputerCategory:AggregateRoot
+    public class Hardware: AggregateRoot
     {
 
         [MaxLength(100)]
         public string Name { get; set; }
-        
+
         public int OrderPriorityId { get; set; }
+
+        public int HardwareTypeId { get; set; }
+
+        public double Price { get; set; }
 
 
     }

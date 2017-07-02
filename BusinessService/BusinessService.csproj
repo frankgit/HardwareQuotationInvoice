@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateRoot.cs" />
+    <Compile Include="Hardware.cs" />
+    <Compile Include="HardwareType.cs" />
     <Compile Include="HardwareQuotaService.cs" />
     <Compile Include="ComputerCategory.cs" />
     <Compile Include="IHardwareQuotaService.cs" />
