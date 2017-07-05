@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BusinessService;
 
-namespace DataRepository
+namespace BusinessService
 {
-    public class RepositoryRegistry : Registry
+    public class ServiceRegistry : Registry
     {
-        public  RepositoryRegistry()
+        public ServiceRegistry()
         {
+
             For<IRepository<ComputerCategory>>()
                 .Use<ComputerRepository>();
 
-            For(typeof(IUnitWork<>))
-                .Use(typeof(UnitWork<>));
+            //For(typeof(IUnitWork<>))
+            //    .Use(typeof(UnitWork<>));
 
         }
     }

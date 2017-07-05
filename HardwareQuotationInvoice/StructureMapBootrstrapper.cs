@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DataRepository;
 
 namespace HardwareQuotationInvoice
 {
@@ -12,11 +13,8 @@ namespace HardwareQuotationInvoice
         {
             container.Configure(x =>
             {
-                x.Scan(a =>
-                {
-                    a.AssembliesFromApplicationBaseDirectory();
-                    a.LookForRegistries();
-                });
+                x.AddRegistry<HareWareRegistry>();
+                x.AddRegistry<RepositoryRegistry>();
             });
         }
     }

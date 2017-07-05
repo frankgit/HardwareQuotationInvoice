@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BusinessService;
+using HardwareQuotationInvoice.Models;
 
 namespace HardwareQuotationInvoice.Controllers
 {
@@ -17,7 +18,8 @@ namespace HardwareQuotationInvoice.Controllers
         // GET: ComputerCategory
         public ActionResult Index()
         {
-            _hardwareService.AddNewComputerType(new ComputerCategory { Name = "台式机", OrderPriorityId = 0 });
+            var modelView = new ComputerCatogryView { Name = "台式机", OrderPriorityId = 0 };
+            _hardwareService.AddNewComputerType(Helper.AutoMapperHelper.MapTo<ComputerCategory>(modelView));
             return View();
         }
 

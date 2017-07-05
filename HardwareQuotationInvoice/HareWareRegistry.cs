@@ -16,12 +16,6 @@ namespace HardwareQuotationInvoice
                 .Use<HardwareQuotaService>();
 
 
-            For<IRepository<ComputerCategory>>()
-                .Use<ComputerRepository>();
-
-            For(typeof(IUnitWork<>))
-                .Use(typeof(UnitWork<>));
-
 
         }
     }
