@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessService;
 using HardwareQuotationInvoice.Models;
+using Newtonsoft.Json;
+using System.IO;
+using System.Text;
 
 namespace HardwareQuotationInvoice.Controllers
 {
@@ -18,8 +21,8 @@ namespace HardwareQuotationInvoice.Controllers
         // GET: ComputerCategory
         public ActionResult Index()
         {
-            var modelView = new ComputerCatogryView { Name = "台式机", OrderPriorityId = 0 };
-            _hardwareService.AddNewComputerType(Helper.AutoMapperHelper.MapTo<ComputerCategory>(modelView));
+           // var modelView = new ComputerCatogryView { Name = "台式机", OrderPriorityId = 0 };
+            //_hardwareService.AddNewComputerType(Helper.AutoMapperHelper.MapTo<ComputerCategory>(modelView));
             return View();
         }
 
@@ -27,6 +30,26 @@ namespace HardwareQuotationInvoice.Controllers
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+        public ContentResult GetJsonData()
+        {
+            string filepath = Server.MapPath("~/App_Data/data.json");
+            string json = GetFileJson(filepath);
+            return Content(json);
+        }
+
+        public string GetFileJson(string filepath)
+        {
+            string json = string.Empty;
+            using (FileStream fs = new FileStream(filepath, FileMode.Open, System.IO.FileAccess.Read, FileShare.ReadWrite))
+            {
+                using (StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("gb2312")))
+                {
+                    json = sr.ReadToEnd().ToString();
+                }
+            }
+            return json;
         }
 
         // GET: ComputerCategory/Create
