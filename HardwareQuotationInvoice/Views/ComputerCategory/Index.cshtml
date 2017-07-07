@@ -7,7 +7,7 @@
 
 <div class="container">
     <h1>Group By v2</h1>
-    <table id="table"
+    <table id="divQuotationGrid"
            data-toggle="table"
            data-group-by="true"
            data-group-by-field="shape"
@@ -20,6 +20,16 @@
             </tr>
         </thead>
     </table>
+
+    <script type="text/javascript">
+        $(function()
+        {
+            alert($("#divQuotationGrid"));
+            $("#divQuotationGrid").bootstrapTable('hideColumn', 'shape');
+
+        })
+   
+    </script>
 </div>
 
       
