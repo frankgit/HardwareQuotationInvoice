@@ -34,7 +34,7 @@ namespace HardwareQuotationInvoice.Controllers
 
         public ContentResult GetJsonData()
         {
-            string filepath = Server.MapPath("~/App_Data/data.json");
+            string filepath = Server.MapPath("~/App_Data/data1.json");
             string json = GetFileJson(filepath);
             return Content(json);
         }

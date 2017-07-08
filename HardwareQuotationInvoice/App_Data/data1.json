@@ -1,0 +1,110 @@
+﻿[
+    {
+        "id": 1,
+        "configtype": "装机基本配件",
+        "name": "CPU",
+        "hardware": "",
+        "price": 1,
+        "quatity": 1,
+        "amount": 1
+    },
+    {
+         "id": 2,
+        "configtype": "装机基本配件",
+        "name": "主板",
+        "hardware": "",
+        "price": 1,
+        "quatity": 1,
+        "amount": 1
+    },
+    {
+        "id": 3,
+        "configtype": "装机基本配件",
+        "name": "内存",
+        "hardware": "",
+        "price": 1,
+        "quatity": 1,
+        "amount": 1
+    },
+    {
+         "id": 4,
+        "configtype": "装机基本配件",
+        "name": "显卡",
+        "hardware": "",
+        "price": 1,
+        "quatity": 1,
+        "amount": 1
+    },
+    {
+        "id": 5,
+        "configtype": "装机基本配件",
+        "name": "固态硬盘SSD",
+        "hardware": "",
+        "price": 1,
+        "quatity": 1,
+        "amount": 1
+    },
+    {
+         "id": 6,
+        "configtype": "装机基本配件",
+        "name": "电源",
+        "hardware": "",
+        "price": 1,
+        "quatity": 1,
+        "amount": 1
+    },
+    {
+         "id": 7,
+        "configtype": "用户可选配件",
+        "name": "显示器",
+        "hardware": "",
+        "price": 1,
+        "quatity": 1,
+        "amount": 1
+    },
+    {
+      "id": 8,
+      "configtype": "用户可选配件",
+      "name": "打印机",
+      "hardware": "",
+      "price": 1,
+      "quatity": 1,
+      "amount": 1
+    },
+    {
+      "id": 9,
+      "configtype": "用户可选配件",
+      "name": "光驱",
+      "hardware": "",
+      "price": 1,
+      "quatity": 1,
+      "amount": 1
+    },
+    {
+      "id": 10,
+      "configtype": "用户可选配件",
+      "name": "游戏手柄",
+      "hardware": "",
+      "price": 2,
+      "quatity": 1,
+      "amount": 2
+    },
+    {
+      "id": 11,
+      "configtype": "用户可选配件",
+      "name": "3D眼镜",
+      "hardware": "",
+      "price": 1,
+      "quatity": 1,
+      "amount": 1
+    },
+   {
+      "id": 12,
+      "configtype": "用户可选配件",
+    "name": "音箱",
+    "hardware": "",
+      "price": 1,
+      "quatity": 1,
+      "amount": 1
+    }
+]

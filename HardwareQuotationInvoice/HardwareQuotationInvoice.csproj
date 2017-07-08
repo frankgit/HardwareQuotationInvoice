@@ -281,8 +281,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-table\bootstrap-table.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="App_Data\data1.json" />
     <None Include="Content\bootstrap.min.css.old" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\editable\bootstrap-editable.css" />
     <Content Include="Content\group-by-v2\bootstrap-table-group-by.css" />
     <Content Include="DesignDocument\Index.jpg" />
     <Content Include="DesignDocument\UI.xml" />
@@ -297,6 +299,9 @@
     <Content Include="App_Data\data.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ConfigQuotation.js" />
+    <Content Include="Scripts\editable\bootstrap-editable.js" />
+    <Content Include="Scripts\editable\bootstrap-table-editable.js" />
     <Content Include="Scripts\group-by-v2\bootstrap-table-group-by.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

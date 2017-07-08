@@ -1,35 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "硬件配置单";
 }
 
-<h2>Index</h2>
-
 <div class="container">
-    <h1>Group By v2</h1>
-    <table id="divQuotationGrid"
+    @*<table id="divQuotationGrid"
            data-toggle="table"
            data-group-by="true"
            data-group-by-field="shape"
            data-url="/ComputerCategory/GetJsonData">
         <thead>
             <tr>
-                <th data-field="shape">Shape</th>
-                <th data-field="color">Color</th>
-                <th data-field="area">Area</th>
+                <th data-field="id">Shape</th>
+                <th data-field="ConfigType">Shape</th>
+                <th data-field="name">Color</th>
+                <th data-field="type">Area</th>
             </tr>
         </thead>
+    </table>*@
+
+    <table id="divQuotationGrid" >
     </table>
 
-    <script type="text/javascript">
-        $(function()
-        {
-            alert($("#divQuotationGrid"));
-            $("#divQuotationGrid").bootstrapTable('hideColumn', 'shape');
-
-        })
-   
-    </script>
+    @Scripts.Render("~/bundles/ConfigQuotationDisplay")
+    
 </div>
 
       

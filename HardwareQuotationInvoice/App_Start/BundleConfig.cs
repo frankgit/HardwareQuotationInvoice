@@ -25,10 +25,16 @@ namespace HardwareQuotationInvoice
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
-                      "~/Content/site.css",
-                      "~/Content/bootstrap-table/bootstrap-table.css",
-                      "~/Content/group-by-v2/bootstrap-table-group-by.css"
+                      "~/Content/site.css"
+
                       ));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap-table").Include(
+                    "~/Content/bootstrap-table/bootstrap-table.css",
+                    "~/Content/group-by-v2/bootstrap-table-group-by.css",
+                    "~/Content/editable/bootstrap-editable.css"
+
+                    ));
 
             //bundles.Add(new StyleBundle("~/Content/group-by-v2").Include(
             //   "~/Content/group-by-v2/bootstrap-table-group-by.css"));
@@ -41,6 +47,13 @@ namespace HardwareQuotationInvoice
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-table").Include(
             "~/Scripts/bootstrap-table/bootstrap-table.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ConfigQuotationDisplay").Include(
+                "~/Scripts/ConfigQuotation.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/editable").Include(
+            "~/Scripts/editable/bootstrap-editable.js",
+            "~/Scripts/editable/bootstrap-table-editable.js"));
         }
     }
 }
