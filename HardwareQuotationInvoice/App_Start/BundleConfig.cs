@@ -54,6 +54,14 @@ namespace HardwareQuotationInvoice
             bundles.Add(new ScriptBundle("~/bundles/editable").Include(
             "~/Scripts/editable/bootstrap-editable.js",
             "~/Scripts/editable/bootstrap-table-editable.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jsexport").Include(
+           "~/Scripts/jsexport/tableExport.js",
+           "~/Scripts/jsexport/bootstrap-table-export.js",
+           "~/Scripts/jsexport/jspdf.min.js",
+           "~/Scripts/jsexport/FileSaver.min.js",
+           "~/Scripts/jsexport/jspdf.plugin.autotable.js"
+           ));
         }
     }
 }
