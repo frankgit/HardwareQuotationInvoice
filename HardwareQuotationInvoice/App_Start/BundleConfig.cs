@@ -62,6 +62,9 @@ namespace HardwareQuotationInvoice
            "~/Scripts/jsexport/FileSaver.min.js",
            "~/Scripts/jsexport/jspdf.plugin.autotable.js"
            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/ComputerCategory").Include(
+                "~/Scripts/ComputerCategory.js"));
         }
     }
 }

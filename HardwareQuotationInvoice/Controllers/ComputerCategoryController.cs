@@ -1,29 +1,17 @@
-﻿using System;
+﻿using HardwareQuotationInvoice.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BusinessService;
-using HardwareQuotationInvoice.Models;
-using Newtonsoft.Json;
-using System.IO;
-using System.Text;
-using HardwareQuotationInvoice.Helper;
 
 namespace HardwareQuotationInvoice.Controllers
 {
-    public class HardWareQuotationController : Controller
+    public class ComputerCategoryController : Controller
     {
-        private IHardwareQuotaService _hardwareService;
-        public HardWareQuotationController(IHardwareQuotaService hardwareService)
-        {
-            _hardwareService = hardwareService;
-        }
         // GET: ComputerCategory
         public ActionResult Index()
         {
-           // var modelView = new ComputerCatogryView { Name = "台式机", OrderPriorityId = 0 };
-            //_hardwareService.AddNewComputerType(Helper.AutoMapperHelper.MapTo<ComputerCategory>(modelView));
             return View();
         }
 
@@ -32,15 +20,6 @@ namespace HardwareQuotationInvoice.Controllers
         {
             return View();
         }
-
-        public ContentResult GetJsonData()
-        {
-            string filepath = Server.MapPath("~/App_Data/data1.json");
-            string json = CommonFunctionHelper.GetFileJson(filepath);
-            return Content(json);
-        }
-
-       
 
         // GET: ComputerCategory/Create
         public ActionResult Create()
@@ -106,6 +85,14 @@ namespace HardwareQuotationInvoice.Controllers
             {
                 return View();
             }
+        }
+
+
+        public ContentResult GetJsonData()
+        {
+            string filepath = Server.MapPath("~/App_Data/ComCategory.json");
+            string json = CommonFunctionHelper.GetFileJson(filepath);
+            return Content(json);
         }
     }
 }

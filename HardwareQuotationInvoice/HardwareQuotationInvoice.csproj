@@ -261,6 +261,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ComputerCategoryController.cs" />
     <Compile Include="Controllers\HardWareQuotationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -269,6 +270,7 @@
     </Compile>
     <Compile Include="HareWareRegistry.cs" />
     <Compile Include="Helper\AutoMapperHelper.cs" />
+    <Compile Include="Helper\CommonFunctionHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ComputerViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -282,6 +284,7 @@
     <Content Include="Content\bootstrap-table\bootstrap-table.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="App_Data\data1.json" />
+    <Content Include="App_Data\ComCategory.json" />
     <None Include="Content\bootstrap.min.css.old" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\editable\bootstrap-editable.css" />
@@ -299,6 +302,7 @@
     <Content Include="App_Data\data.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ComputerCategory.js" />
     <Content Include="Scripts\ConfigQuotation.js" />
     <Content Include="Scripts\editable\bootstrap-editable.js" />
     <Content Include="Scripts\editable\bootstrap-table-editable.js" />
