@@ -13,7 +13,7 @@ function LoadQuotationGrid()
     var price = new Array(15, 23, 35,89,191)
     $('#divQuotationGrid').bootstrapTable({
         idField:"id",
-        url: '/ComputerCategory/GetJsonData',
+        url: '/HardWareQuotation/GetJsonData',
         groupBy: true,
         clickToSelect: true,
         groupByField: "configtype",

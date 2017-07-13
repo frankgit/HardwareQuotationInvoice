@@ -11,10 +11,10 @@ using System.Text;
 
 namespace HardwareQuotationInvoice.Controllers
 {
-    public class ComputerCategoryController : Controller
+    public class HardWareQuotationController : Controller
     {
         private IHardwareQuotaService _hardwareService;
-        public ComputerCategoryController(IHardwareQuotaService hardwareService)
+        public HardWareQuotationController(IHardwareQuotaService hardwareService)
         {
             _hardwareService = hardwareService;
         }
