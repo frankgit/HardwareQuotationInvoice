@@ -3,7 +3,7 @@
 
 $(function () {
 
-    LoadComputerCategoryGrid();
+    LoadComputerCategoryGrid();  
     $("#divQuotationGrid").bootstrapTable('hideColumn', 'id');
     $remove.prop('disabled', true);
     $remove.click(function () {
@@ -29,13 +29,10 @@ $(function () {
 function LoadComputerCategoryGrid()
 {
     $table.bootstrapTable({
-        idField: "Id",
         uniqueId: "Id",
         url: '/ComputerCategory/GetJsonData',
         toolbar: "#toolbar",
-        groupBy: true,
-        clickToSelect: true,
-        groupByField: "OrderPriorityId",
+        clickEdit:true,
         columns: [
             {
                 checkbox:true
@@ -46,13 +43,14 @@ function LoadComputerCategoryGrid()
             },
             {
                 field: 'Name',
-                title: '名称'
+                title: '名称',
+                editable:'input'
             }, 
         
             {
                 field: 'OrderPriorityId',
                 title: '优先级',
-                falign:'right'
+                editable: 'input'
             }
         ]
         
