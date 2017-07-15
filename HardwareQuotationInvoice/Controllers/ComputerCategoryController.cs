@@ -87,6 +87,22 @@ namespace HardwareQuotationInvoice.Controllers
             }
         }
 
+        
+        [HttpPost]
+        public ActionResult Update(FormCollection collection)
+        {
+            try
+            {
+                var ss = collection["qq"];
+                
+                return Content(ss);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         public ContentResult GetJsonData()
         {

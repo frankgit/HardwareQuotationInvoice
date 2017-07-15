@@ -64,3 +64,26 @@ function getIdSelections() {
         return row.Id
     });
 }
+
+function UpdateComputerCategory()
+{
+    $('#modelLoading').modal('show');
+    $.ajax({
+        url: "/ComputerCategory/Update",
+        type: 'post',
+        data: {
+            qq:'dd'
+        },        
+        success: function (data) {
+
+            $('#modelLoading').modal('hide');
+        },
+        error: function()
+        {
+            alert("失败");
+        }
+
+    });
+
+    $('#myModal').modal('hide')
+}
