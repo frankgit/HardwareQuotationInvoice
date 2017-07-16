@@ -72,7 +72,8 @@ function UpdateComputerCategory()
         url: "/ComputerCategory/Update",
         type: 'post',
         data: {
-            qq:'dd'
+            name: $("#txtCategoryName").val(),
+            priority: $("#txtPriority").val()
         },        
         success: function (data) {
 

@@ -1,6 +1,9 @@
-﻿using HardwareQuotationInvoice.Helper;
+﻿using BusinessService;
+using HardwareQuotationInvoice.Helper;
+using HardwareQuotationInvoice.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,9 +12,15 @@ namespace HardwareQuotationInvoice.Controllers
 {
     public class ComputerCategoryController : Controller
     {
+        private IHardwareQuotaService _hardwareService;
+
+        public ComputerCategoryController(IHardwareQuotaService hardwareService)
+        {
+            _hardwareService = hardwareService;
+        }
         // GET: ComputerCategory
         public ActionResult Index()
-        {
+        {          
             return View();
         }
 
@@ -93,9 +102,13 @@ namespace HardwareQuotationInvoice.Controllers
         {
             try
             {
-                var ss = collection["qq"];
-                
-                return Content(ss);
+                var name = collection["name"];
+                var priority = collection["priority"];
+                var modelView = new ComputerCatogryView { Name = name, OrderPriorityId = int.Parse(priority) };
+                _hardwareService.AddNewComputerType(Helper.AutoMapperHelper.MapTo<ComputerCategory>(modelView));
+
+
+                return Content("ok");
             }
             catch
             {

@@ -105,7 +105,7 @@ namespace DataRepository
         {
             get
             {
-                return ConfigurationManager.AppSettings["DataFilePath"];
+                return AppDomain.CurrentDomain.BaseDirectory + "\\App_Data\\" + ConfigurationManager.AppSettings["DataFilePath"];
             }
         }
 
