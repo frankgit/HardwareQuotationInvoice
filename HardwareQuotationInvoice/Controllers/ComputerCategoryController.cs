@@ -107,8 +107,7 @@ namespace HardwareQuotationInvoice.Controllers
                 var modelView = new ComputerCatogryView { Name = name, OrderPriorityId = int.Parse(priority) };
                 _hardwareService.AddNewComputerType(Helper.AutoMapperHelper.MapTo<ComputerCategory>(modelView));
 
-
-                return Content("ok");
+                return Json(RetreiveAllComputerCategory());
             }
             catch
             {
@@ -117,11 +116,25 @@ namespace HardwareQuotationInvoice.Controllers
         }
 
 
-        public ContentResult GetJsonData()
+        public ActionResult GetJsonData()
         {
-            string filepath = Server.MapPath("~/App_Data/ComCategory.json");
-            string json = CommonFunctionHelper.GetFileJson(filepath);
-            return Content(json);
+            return Json(RetreiveAllComputerCategory());
+        }
+
+        private JsonResult RetreiveAllComputerCategory()
+        {
+            var lstComputerCategory = new List<ComputerCategory>();
+            var sourcelstComputerCategory = _hardwareService.GetAllComputerCategory();
+            foreach (var item in sourcelstComputerCategory)
+            {
+                lstComputerCategory.Add(new ComputerCategory { Id = item.Id, Name = item.Name, OrderPriorityId = item.OrderPriorityId });
+            }
+            var viewData = lstComputerCategory.MapToList<ComputerCategory, ComputerCatogryView>();
+            var json = new JsonResult
+            {
+                Data = viewData
+            };
+            return json;
         }
     }
 }

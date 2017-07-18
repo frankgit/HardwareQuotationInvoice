@@ -17,5 +17,10 @@ namespace BusinessService
         {
             _repository.Insert(computerCategory);
         }
+
+        public IEnumerable<ComputerCategory>  GetAllComputerCategory()
+        {
+            return _repository.Entitles;
+        }
     }
 }

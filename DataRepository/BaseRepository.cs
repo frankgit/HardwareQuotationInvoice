@@ -9,18 +9,25 @@ namespace DataRepository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : AggregateRoot
     {
-        private IUnitWork<TEntity> _unitWorker;
+        public IUnitWork<TEntity> _unitWorker;
+
+        public string TableName;
         public BaseRepository(IUnitWork<TEntity> unitWorker) 
         {
             _unitWorker = unitWorker;
         }
 
-        public IQueryable<TEntity> Entitles
+        public IEnumerable<TEntity> Entitles
         {
             get
             {
-                throw new NotImplementedException();
+                return GetAllData();
             }
+        }
+
+        public virtual IEnumerable<TEntity> GetAllData()
+        {
+            return null;
         }
 
         public void Delete(TEntity entity)

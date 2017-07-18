@@ -9,7 +9,7 @@ namespace BusinessService
 {
     public interface IRepository<TEntity> where TEntity:AggregateRoot
     {
-        IQueryable<TEntity> Entitles { get; }
+        IEnumerable<TEntity> Entitles { get; }
 
         void Insert(TEntity entity);
         void Insert(IEnumerable<TEntity> entities);

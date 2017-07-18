@@ -7,10 +7,50 @@
 
 (function ($) {
     'use strict';
-
+    var updateUrl;
+    var loadName;
     $.extend($.fn.bootstrapTable.defaults, {
-        clickEdit: false
+        clickEdit: false,
+        updateUrl: "",
+        loadName:""
     });
+
+
+    function updateToServerSide(itemId, data) {
+        //alert(trNode[0].length);
+        //trNode.addClass('success');
+        
+        //if (loadName) {
+        //    $('#' + loadName).modal('show');
+        //}
+        //$.ajax({
+        //    url: updateUrl,
+        //    dataType: "json",
+        //    type: 'post',
+        //    data: data,
+        //    success: function (data) {
+        //        $table.bootstrapTable('load', data.Data);
+        //        if (loadName) {
+        //            $('#' + loadName).modal('hide');
+        //        }
+        //    },
+        //    error: function () {
+        //        alert("失败");
+        //    }
+
+        //});
+    }
+
+    function rowStyle(row, index) {
+        var classes = ['active', 'success', 'info', 'warning', 'danger'];
+
+        if (index % 2 === 0 && index / 2 < classes.length) {
+            return {
+                classes: classes[index / 2]
+            };
+        }
+        return {};
+    }
 
     function setDivision(node, options){
         var $option = $('<option />');
@@ -25,31 +65,65 @@
     }
 
     function clikcToEdit(evt, tarNode){
-        var txt = [], table = evt,
+        var txt = [],inputIndexes = [], table = evt,
             submit = '<button type="button" class="btn btn-primary btn-sm editable-submit"><i class="glyphicon glyphicon-ok"></i></button>',
             cancel = '<button type="button" class="btn btn-default btn-sm editable-cancel"><i class="glyphicon glyphicon-remove"></i></button>';
-
+        tarNode.addClass('warning');
         var replaceData = function () {
+            //alert(updateUrl);
+           
             var tableTarget = table.$tableBody.find('table');
+  
             txt = [];
+            inputIndexes = [];
             tarNode.find('td').find('input[type="text"]').each(function(i, td){
                 txt.push($(td).eq(0).val());
             });
             tarNode.find('select').each(function(i, td){
                 txt.push($('#'+td.id+' option:selected').val());
             });
+
+            tarNode.find('td').each(function (i, td) {
+                var inputValueObj = $(td).find('input[type="text"]');
+                if (inputValueObj.length > 0) {
+                    txt.push(inputValueObj.val());
+                    inputIndexes.push(i);
+                }
+                else {
+                    inputValueObj = $(td).find('select')
+                    if (inputValueObj.length > 0) {
+                        txt.push(inputValueObj.val());
+                        inputIndexes.push(i);
+                    }
+
+                }
+
+                
+            });
+
+            var updateRow = {};
+            for (var i = 0; i < inputIndexes.length; i++) {
+                updateRow[table.columns[inputIndexes[i]].field] = txt[i];
+            }
+
+          
             tableTarget.bootstrapTable('updateRow', {
                 index: table.$data.thId,
-                row: {
-                    noOld: txt[0],
-                    area: tarNode.find('select').eq(0).children(':selected').text(),
-                    town: tarNode.find('select').eq(1).children(':selected').text(),
-                    address: txt[1]
-                }
+                row: updateRow
             });
             $('#tooling').remove();
             table.editing = true;
-            // updateToServerSide(table.$data.itemid, txt);
+ 
+
+            tableTarget.find('tr[data-uniqueid="' + table.$data.itemid + '"]').each(function () {
+             
+                 $(this).addClass('success');
+
+            });
+
+            //updateToServerSide(table.$data.itemid, updateRow);
+              
+  
             return false;
         };
 
@@ -100,11 +174,8 @@
         }
     }
 
-    function updateToServerSide(item, data){
-        var itemid = $(item).find('a').attr('href').match(/\d+/g)[0];
-        var datas = {'treeId': itemid, 'oldTreeSerialNo': data[0], 'adminDivision': data[2], 'adminUnit': data[3], 'treeAddr': data[1]}; //傳送至伺服器端的Data產生處，需手動修改對應表格
-        store( 'data/update', datas)
-    }
+    
+
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
         _initTable = BootstrapTable.prototype.initTable,
@@ -124,11 +195,19 @@
     BootstrapTable.prototype.initBody = function () {
         var that = this;
         _initBody.apply(this, Array.prototype.slice.apply(arguments));
-
+        
         if (!this.options.clickEdit) {
             return;
         }
+        if (this.options.updateUrl)
+        {
+            updateUrl = this.options.updateUrl;
+        }
 
+        if (this.options.loadName)
+        {
+            loadName = this.options.loadName;
+        }
         var table = this.$tableBody.find('table');
         that.editing=true;
 
@@ -137,7 +216,7 @@
             this.$data.thId = $element.data().index;
             this.$data.itemid = $element.data().uniqueid;
             this.$data.divi = parseInt(row.area);
-            this.$data.town=parseInt(row.town);
+            this.$data.town = parseInt(row.town);           
             clikcToEdit(this, $element);
         }.bind(this));
     };

@@ -9,5 +9,7 @@ namespace BusinessService
     public interface IHardwareQuotaService: IService
     {
         void AddNewComputerType(ComputerCategory computerCategory);
+
+        IEnumerable<ComputerCategory> GetAllComputerCategory();
     }
 }
