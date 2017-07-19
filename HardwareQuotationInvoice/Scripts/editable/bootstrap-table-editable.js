@@ -15,7 +15,8 @@
         onEditableSave: function(field, row, oldValue, $el) {
             return false;
         },
-        onEditableShown: function(field, row, $el, editable) {
+        onEditableShown: function (field, row, $el, editable) {
+          
             return false;
         },
         onEditableHidden: function(field, row, $el, reason) {
@@ -29,6 +30,19 @@
         'editable-shown.bs.table': 'onEditableShown',
         'editable-hidden.bs.table': 'onEditableHidden'
     });
+
+    var getFieldIndex = function (columns, field) {
+        var index = -1;
+
+        $.each(columns, function (i, column) {
+            if (column.field === field) {
+                index = i;
+                return false;
+            }
+            return true;
+        });
+        return index;
+    };
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
         _initTable = BootstrapTable.prototype.initTable,
@@ -98,6 +112,10 @@
         });
     };
 
+
+
+   
+
     BootstrapTable.prototype.initBody = function() {
         var that = this;
         _initBody.apply(this, Array.prototype.slice.apply(arguments));
@@ -106,40 +124,66 @@
             return;
         }
 
+        that.$body.find('a').each(function (index, item) {
+            var newEditable = that.columns[getFieldIndex(that.columns, $(item).attr("data-name"))].editable;
+
+            var textAttr = $(item).attr("data-name") + $(item).attr("data-pk");
+
+            if ($.selectArray[textAttr] != undefined) {
+
+                newEditable.source = $.selectArray[textAttr];
+
+                $(item).editable(newEditable);
+            }
+            else {
+                if ($(item).attr("data-name") == "quatity") {
+                    newEditable.source = $.selectArray[$(item).attr("data-name")];
+                    $(item).editable(newEditable);
+                }
+
+            }
+        });
+
         $.each(this.columns, function(i, column) {
             if (!column.editable) {
                 return;
             }
+        
 
-            that.$body.find('a[data-name="' + column.field + '"]').editable(column.editable)
-                .off('save').on('save', function(e, params) {
-                    var data = that.getData(),
-                        index = $(this).parents('tr[data-index]').data('index'),
-                        row = data[index],
-                        oldValue = row[column.field];
+        //    that.$body.find('a[data-name="' + column.field + '"]').editable(column.editable)
+        //        .off('save').on('save', function(e, params) {
+        //            var data = that.getData(),
+        //                index = $(this).parents('tr[data-index]').data('index'),
+        //                row = data[index],
+        //                oldValue = row[column.field];
 
-                    $(this).data('value', params.submitValue);
-                    row[column.field] = params.submitValue;
-                    that.trigger('editable-save', column.field, row, oldValue, $(this));
-                    that.resetFooter();
-                });
-            that.$body.find('a[data-name="' + column.field + '"]').editable(column.editable)
-                .off('shown').on('shown', function(e, editable) {
-                    var data = that.getData(),
-                        index = $(this).parents('tr[data-index]').data('index'),
-                        row = data[index];
+        //            $(this).data('value', params.submitValue);
+        //            row[column.field] = params.submitValue;
+        //            that.trigger('editable-save', column.field, row, oldValue, $(this));
+        //            that.resetFooter();
+        //        });
 
-                    that.trigger('editable-shown', column.field, row, $(this), editable);
-                });
-            that.$body.find('a[data-name="' + column.field + '"]').editable(column.editable)
-                .off('hidden').on('hidden', function(e, reason) {
-                    var data = that.getData(),
-                        index = $(this).parents('tr[data-index]').data('index'),
-                        row = data[index];
+        //    that.$body.find('a[data-name="' + +column.field + '"]').editable(column.editable)
+        //        .off('shown').on('shown', function (e, editable) {            
+        //            var data = that.getData(),
+        //                index = $(this).parents('tr[data-index]').data('index'),
+        //                row = data[index];
 
-                    that.trigger('editable-hidden', column.field, row, $(this), reason);
-                });
+        //            that.trigger('editable-shown', column.field, row, $(this), editable);
+        //        });
+        //    that.$body.find('a[data-name="' + column.field + '"]').editable(column.editable)
+        //        .off('hidden').on('hidden', function(e, reason) {
+        //            var data = that.getData(),
+        //                index = $(this).parents('tr[data-index]').data('index'),
+        //                row = data[index];
+
+        //            that.trigger('editable-hidden', column.field, row, $(this), reason);
+        //        });
         });
+
+
+
+
         this.trigger('editable-init');
     };
 

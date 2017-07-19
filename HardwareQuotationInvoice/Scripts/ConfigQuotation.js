@@ -10,7 +10,14 @@
 function LoadQuotationGrid()
 {
     var curRow = {};
-    var price = new Array(15, 23, 35,89,191)
+    var price = new Array(15, 23, 35, 89, 191)
+    $.selectArray =
+    {
+        "hardware1": [{ value: "1", text: "ADM A10-5800K(盒)" }, { value: "2", text: "ADM A11-5800K(盒)" }, { value: "3", text: "ADM A12-5800K(盒)" }],
+        "hardware2": [{ value: "1", text: "内存1" }, { value: "2", text: "内存2" }, { value: "3", text: "内存3" }],
+        "hardware3": [{ value: "1", text: "显卡1" }, { value: "2", text: "显卡2" }, { value: "3", text: "显卡3" }],
+        "quatity": [{ value: "1", text: "1" }, { value: "2", text: "2" }, { value: "3", text: "3" }, { value: "4", text: "4" }, { value: "5", text: "5" }]
+    }
     $('#divQuotationGrid').bootstrapTable({
         idField:"id",
         url: '/HardWareQuotation/GetJsonData',
@@ -68,7 +75,7 @@ function LoadQuotationGrid()
                 editable: {
                     type: 'select',
                     mode: 'inline',
-                    source: [{ value: "1", text: "ADM A10-5800K(盒)" }, { value: "2", text: "ADM A11-5800K(盒)" }, { value: "3", text: "ADM A12-5800K(盒)" }]
+                    source: {}
                 }
             },
 
@@ -83,7 +90,7 @@ function LoadQuotationGrid()
                 editable: {
                     type: 'select',
                     mode: 'inline',
-                    source: [{ value: "1", text: "1" }, { value: "2", text: "2" }, { value: "3", text: "3" }, { value: "4", text: "4" }, { value: "5", text: "5" }]
+                    source: {}
                 }
             },
 

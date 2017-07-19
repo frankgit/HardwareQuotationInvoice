@@ -57,7 +57,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             this.$div.empty().append(this.$loading);
             
             //init form template and buttons
-            this.initTemplate();
+            this.initTemplate ();
             if(this.options.showbuttons) {
                 this.initButtons();
             } else {
@@ -3144,7 +3144,6 @@ $(function(){
 **/
 (function ($) {
     "use strict";
-    
     var Select = function (options) {
         this.init('select', options, Select.defaults);
     };
