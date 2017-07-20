@@ -90,6 +90,10 @@ function InitGrid() {
 
 function InsertComputerCategory()
 {
+    var originalIds = [];
+    $.each($table.bootstrapTable('getData'),function (index, item) {
+        originalIds.push(item.Id);
+    })
     $('#modelLoading').modal('show');
     $.ajax({
         url: "/ComputerCategory/Update",
@@ -100,8 +104,22 @@ function InsertComputerCategory()
             priority: $("#txtPriority").val()
         },        
         success: function (data) {
+           
             $table.bootstrapTable('load', data.Data);
             $('#modelLoading').modal('hide');
+            alert(JSON.stringify(data.Data));
+            var newId;
+            $.each(data.Data, function (index, itemNew) {
+                if ($.inArray(itemNew.Id, originalIds) == -1) {
+                    newId = itemNew.Id;
+                    return false;
+                }
+            })
+            $table.find('tr[data-uniqueid="' + newId + '"]').each(function () {
+
+                $(this).addClass('success');
+
+            });
         },
         error: function()
         {
@@ -111,4 +129,7 @@ function InsertComputerCategory()
     });
 
     $('#myModal').modal('hide')
+
+
+   
 }
